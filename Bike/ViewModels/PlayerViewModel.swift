@@ -36,13 +36,13 @@ final class PlayerViewModel: ObservableObject {
     }
 
     func loadDemoSong() {
-        guard let songURL = Bundle.main.url(forResource: "demo", withExtension: "mp3") else {
-            errorMessage = "Agrega demo.mp3 al target Bike para probar la reproducción."
+        guard let songURL = bundledMP3URL() else {
+            errorMessage = "Agrega cualquier archivo .mp3 a Bike/Resources y al target Bike para probar la reproducción."
             return
         }
 
         let song = Song(
-            title: "Demo Track",
+            title: songURL.deletingPathExtension().lastPathComponent,
             artist: "Bike",
             album: "Local Files",
             fileURL: songURL
@@ -109,5 +109,25 @@ final class PlayerViewModel: ObservableObject {
         isPlaying = audioPlayerService.isPlaying
         currentTime = audioPlayerService.currentTime
         duration = audioPlayerService.duration
+    }
+
+    private func bundledMP3URL() -> URL? {
+        if let resourcesURL = Bundle.main.resourceURL {
+            let resourceMP3s = (try? FileManager.default.contentsOfDirectory(
+                at: resourcesURL.appendingPathComponent("Resources"),
+                includingPropertiesForKeys: nil
+            ))?
+                .filter { $0.pathExtension.lowercased() == "mp3" }
+                .sorted { $0.lastPathComponent < $1.lastPathComponent }
+
+            if let firstResourceMP3 = resourceMP3s?.first {
+                return firstResourceMP3
+            }
+        }
+
+        let bundledMP3s = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)?
+            .sorted { $0.lastPathComponent < $1.lastPathComponent }
+
+        return bundledMP3s?.first
     }
 }
