@@ -10,6 +10,7 @@
 		FA1EEC382F894DF1006182D4 /* Bike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1EEC4E2F894FD9006182D4 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		FA1EEC4F2F895012006182D4 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		FA3DEB592F896923005A9453 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -78,6 +79,7 @@
 		FA1EEC4B2F894E97006182D4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FA3DEB592F896923005A9453 /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

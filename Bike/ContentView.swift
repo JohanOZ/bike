@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @StateObject private var playerViewModel = PlayerViewModel()
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationStack {
+            PlayerView(viewModel: playerViewModel)
+                .navigationTitle("Bike")
+        }
+    }
 }
